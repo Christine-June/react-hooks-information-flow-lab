@@ -3,9 +3,9 @@ import Item from "./Item";
 import Filter from "./Filter";
 
 function ShoppingList({ items, selectedCategory, onCategoryChange }) {
-  const itemsToDisplay = items.filter((item) =>
-    selectedCategory === "All" || item.category === selectedCategory
-  );
+  const displayedItems = items.filter((item) => {
+    return selectedCategory === "All" || item.category === selectedCategory;
+  });
 
   return (
     <div className="ShoppingList">
@@ -13,8 +13,8 @@ function ShoppingList({ items, selectedCategory, onCategoryChange }) {
         selectedCategory={selectedCategory}
         onCategoryChange={onCategoryChange}
       />
-      <ul className="Items">
-        {itemsToDisplay.map((item) => (
+      <ul>
+        {displayedItems.map((item) => (
           <Item
             key={item.id}
             name={item.name}
